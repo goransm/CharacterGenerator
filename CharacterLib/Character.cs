@@ -64,6 +64,11 @@ namespace CharacterLib
 
         }
 
+        public string DbValues()
+        {
+            return $"'{Name}', '{CharacterType}', '{HP}', '{Energy}', '{ArmorRating}'";
+        }
+
 
         
     }

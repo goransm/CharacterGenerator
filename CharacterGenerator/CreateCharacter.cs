@@ -9,15 +9,21 @@ using System.Windows.Forms;
 using System.IO;
 
 using CharacterLib;
-
+using Microsoft.Data.SqlClient;
 
 namespace CharacterGenerator
 {
     public partial class CreateCharacter : Form
     {
+        private string ConnectionString { get; }
         public CreateCharacter()
         {
             InitializeComponent();
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+            builder.DataSource = "PC7414\\SQLEXPRESS";
+            builder.InitialCatalog = "RPGCharacters";
+            builder.IntegratedSecurity = true;
+            ConnectionString = builder.ConnectionString;
         }
 
         private void createButton_Click(object sender, EventArgs e)
@@ -62,11 +68,28 @@ namespace CharacterGenerator
                     outputTextBox.Text = prince.ToString();
                     using (StreamWriter w = File.AppendText("characters.txt"))
                     {
-                    prince.saveToTextFile(w);
+                        prince.saveToTextFile(w);   
                     }
+                    SaveCharacter(prince);
+                    
                 }
             }
 
+        }
+
+        private void SaveCharacter(Character c)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                var sqlString = $"Insert into Character (name, type, hp, energy, armorrating) values({c.DbValues()})";
+                connection.Open();
+                var command = new SqlCommand(sqlString, connection);
+                var adapter = new SqlDataAdapter();
+                adapter.InsertCommand = command;
+                adapter.InsertCommand.ExecuteNonQuery();
+                command.Dispose();
+                connection.Close();
+            }
         }
     }
 }
