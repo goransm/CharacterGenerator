@@ -35,6 +35,7 @@
             this.typeSelector = new System.Windows.Forms.ComboBox();
             this.outputTextBox = new System.Windows.Forms.TextBox();
             this.createButton = new System.Windows.Forms.Button();
+            this.showCharactersButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // title
@@ -109,11 +110,22 @@
             this.createButton.UseVisualStyleBackColor = false;
             this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 
+            // showCharactersButton
+            // 
+            this.showCharactersButton.Location = new System.Drawing.Point(13, 309);
+            this.showCharactersButton.Name = "showCharactersButton";
+            this.showCharactersButton.Size = new System.Drawing.Size(556, 23);
+            this.showCharactersButton.TabIndex = 7;
+            this.showCharactersButton.Text = "Show character list";
+            this.showCharactersButton.UseVisualStyleBackColor = true;
+            this.showCharactersButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.showCharactersButton_MouseClick);
+            // 
             // CreateCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 388);
+            this.Controls.Add(this.showCharactersButton);
             this.Controls.Add(this.createButton);
             this.Controls.Add(this.outputTextBox);
             this.Controls.Add(this.typeSelector);
@@ -138,5 +150,6 @@
         private System.Windows.Forms.ComboBox typeSelector;
         private System.Windows.Forms.TextBox outputTextBox;
         private System.Windows.Forms.Button createButton;
+        private System.Windows.Forms.Button showCharactersButton;
     }
 }

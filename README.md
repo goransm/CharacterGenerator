@@ -7,3 +7,6 @@ to a file named characters.txt, located in the \CharacterGenerator\bin\Debug\net
 
 ## Part 2
 In addition to saving characters to a text file, they are also added to a database.
+
+## Part 3
+Created a Dbase class, with methods to interact with the database. Also added a view to list characters, as well as edit their names and delete selected characters.

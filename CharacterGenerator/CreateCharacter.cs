@@ -91,5 +91,11 @@ namespace CharacterGenerator
                 connection.Close();
             }
         }
+
+        private void showCharactersButton_MouseClick(object sender, MouseEventArgs e)
+        {
+            var characterList = new CharacterList(ConnectionString);
+            characterList.Show();
+        }
     }
 }
